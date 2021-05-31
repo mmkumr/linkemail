@@ -1,0 +1,20 @@
+{
+    "name": "aqlx86/isms-php",
+    "description": "PHP library for ISMS SMS API",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Arnel Labarda",
+            "email": "aqlx86@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ISMS\\": "src/ISMS"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "~6.0"
+    }
+}
