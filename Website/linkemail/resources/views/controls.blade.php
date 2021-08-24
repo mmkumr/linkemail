@@ -141,9 +141,20 @@
 			    <div class="form-group mt-3 pt-3 mb-5">
 				<form action="{{ route('store') }}" method="POST" id="emailform">
 					{{ csrf_field() }}	
+					@if(count($errors) > 0)
+            <div class="spacer"></div>
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{!! $error !!}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif	
 					<input name="email" type="email" class="form-control" placeholder="email@example.com" required>
 					<input name="f" type="hidden" value="{{$uid}}">	
 					<input name="name" type="text" class="form-control" placeholder="Full Name" required>
+					<input name="phone_no" type="tel" class="form-control" placeholder="Whatsapp No." pattern="[0-9]{10}" required>
 				</form>
                             </div>
 			    <small class="text-muted"><a href="#" onclick="document.getElementById('emailform').submit()">Download</a></small>

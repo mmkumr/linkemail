@@ -41,7 +41,9 @@ class ControlsController extends Controller
     {
 	$this->validate($request, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
+	    'email' => 'required|string|email|max:255',
+	    'phone_no' => 'required|regex:/[0-9]{10}/'
+
 	]); 	
 	$uid = $request->input("f");
         $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/FirebaseKey.json');
@@ -54,7 +56,8 @@ class ControlsController extends Controller
 	//Setting data to the child in firebase realtime database.
 	Mail::queue(new SendMail($request->input("email"), $request->input("name"), $file["filename"], $file["url"] )  );
         $setNode = $database->getReference($uid . "/emails")->push([ "email" => $request->input("email"),
-								    "name" => $request->input("name")	
+		"name" => $request->input("name"),
+		"phone" => $request->input("phone_no")
 	]);
 	return view("thankyou");
     }

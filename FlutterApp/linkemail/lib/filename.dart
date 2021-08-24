@@ -83,6 +83,11 @@ class _FileNameState extends State<FileName> {
                         MaterialButton(
                           minWidth: MediaQuery.of(context).size.width / 2,
                           onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => FileName(),
+                              ),
+                            );
                             _firebase.child(uid[index]).remove();
                           },
                           color: Colors.orangeAccent,
